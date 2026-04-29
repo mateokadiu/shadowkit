@@ -1,0 +1,32 @@
+{
+  "name": "shadowkit",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Production toolkit for shipping framework-agnostic embeddable Web Components. Tailwind v4 inside Shadow DOM, typed postMessage bridge, design-token contract, lifecycle-aware reactive store.",
+  "license": "MIT",
+  "author": "Mateo Kadiu",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mateokadiu/shadowkit.git"
+  },
+  "homepage": "https://github.com/mateokadiu/shadowkit#readme",
+  "bugs": "https://github.com/mateokadiu/shadowkit/issues",
+  "packageManager": "pnpm@9.12.0",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "turbo": "^2.3.0",
+    "typescript": "^5.7.2"
+  }
+}
