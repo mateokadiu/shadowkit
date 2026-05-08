@@ -1,0 +1,43 @@
+{
+  "name": "@shadowkit/core",
+  "version": "0.1.0",
+  "description": "Lifecycle-safe base class for embeddable Web Components. Shadow DOM, scoped stylesheets via adoptedStyleSheets, safe element registration.",
+  "license": "MIT",
+  "author": "Mateo Kadiu",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mateokadiu/shadowkit.git",
+    "directory": "packages/core"
+  },
+  "keywords": [
+    "web-components",
+    "custom-elements",
+    "shadow-dom",
+    "shadowkit",
+    "embed"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo 'lint TBD'",
+    "test": "vitest run",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepare": "tsc -b"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8",
+    "jsdom": "^25.0.1"
+  },
+  "publishConfig": { "access": "public" }
+}
