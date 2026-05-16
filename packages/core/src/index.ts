@@ -17,3 +17,13 @@ export {
   constructSheet,
   supportsConstructableStyleSheets,
 } from "./style-sheets.js";
+
+export { createStore, watchStore } from "./store.js";
+export type {
+  Store,
+  StoreListener,
+  StoreSelector,
+  StoreUpdater,
+  StoreUnsubscribe,
+  WatchStoreOptions,
+} from "./store.js";
