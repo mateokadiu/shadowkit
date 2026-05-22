@@ -1,0 +1,45 @@
+{
+  "name": "@shadowkit/theme",
+  "version": "0.1.0",
+  "description": "Design-token DSL for shadowkit. TS source of truth emits :host CSS variables and matching TS types. Drift becomes a type error.",
+  "license": "MIT",
+  "author": "Mateo Kadiu",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mateokadiu/shadowkit.git",
+    "directory": "packages/theme"
+  },
+  "keywords": [
+    "design-tokens",
+    "css-variables",
+    "shadow-dom",
+    "theme",
+    "shadowkit"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo 'lint TBD'",
+    "test": "vitest run",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepare": "tsc -b"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "publishConfig": { "access": "public" }
+}
