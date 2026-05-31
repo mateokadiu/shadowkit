@@ -1,0 +1,47 @@
+{
+  "name": "@shadowkit/bridge",
+  "version": "0.1.0",
+  "description": "Typed postMessage bridge for shadowkit: Zod-validated request/response RPC + named event channels, with timeouts, correlation IDs, and origin allow-listing.",
+  "license": "MIT",
+  "author": "Mateo Kadiu",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mateokadiu/shadowkit.git",
+    "directory": "packages/bridge"
+  },
+  "keywords": [
+    "postmessage",
+    "rpc",
+    "iframe",
+    "embed",
+    "zod",
+    "shadowkit"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo 'lint TBD'",
+    "test": "vitest run",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepare": "tsc -b"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8",
+    "jsdom": "^25.0.1"
+  },
+  "publishConfig": { "access": "public" }
+}
