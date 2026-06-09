@@ -1,0 +1,50 @@
+{
+  "name": "@shadowkit/tailwind",
+  "version": "0.1.0",
+  "description": "Tailwind v4 inside Shadow DOM, actually working. Runtime injector that attaches compiled Tailwind output to shadow roots via adoptedStyleSheets — solves the :root cascade-boundary problem.",
+  "license": "MIT",
+  "author": "Mateo Kadiu",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mateokadiu/shadowkit.git",
+    "directory": "packages/tailwind"
+  },
+  "keywords": [
+    "tailwind",
+    "tailwindcss",
+    "shadow-dom",
+    "web-components",
+    "adopted-stylesheets",
+    "shadowkit"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "examples"],
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo 'lint TBD'",
+    "test": "vitest run",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepare": "tsc -b"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": { "optional": true }
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8",
+    "happy-dom": "^15.11.7"
+  },
+  "publishConfig": { "access": "public" }
+}
