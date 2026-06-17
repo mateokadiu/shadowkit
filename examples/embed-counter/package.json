@@ -1,0 +1,26 @@
+{
+  "name": "@shadowkit-examples/embed-counter",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Minimal runnable demo of <sk-counter>, exercising @shadowkit/core, /theme, /bridge, /tailwind together.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo 'lint TBD'",
+    "test": "echo 'no tests'"
+  },
+  "dependencies": {
+    "@shadowkit/core": "workspace:*",
+    "@shadowkit/theme": "workspace:*",
+    "@shadowkit/bridge": "workspace:*",
+    "@shadowkit/tailwind": "workspace:*",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11"
+  }
+}
