@@ -1,0 +1,51 @@
+{
+  "name": "@shadowkit/tailwind-postcss",
+  "version": "0.1.0",
+  "description": "PostCSS plugin that rewrites Tailwind v4 :root / @theme output to :host so it cascades into Shadow DOM, and emits an injectTailwind-ready CSS module.",
+  "license": "MIT",
+  "author": "Mateo Kadiu",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mateokadiu/shadowkit.git",
+    "directory": "packages/tailwind-postcss"
+  },
+  "keywords": [
+    "tailwindcss",
+    "postcss",
+    "shadow-dom",
+    "web-components",
+    "shadowkit"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo 'lint TBD'",
+    "test": "vitest run",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepare": "tsc -b"
+  },
+  "dependencies": {
+    "postcss": "^8.4.49"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": { "optional": true }
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "publishConfig": { "access": "public" }
+}

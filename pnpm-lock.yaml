@@ -99,6 +99,22 @@ importers:
         specifier: ^2.1.8
         version: 2.1.9(@types/node@22.20.0)(happy-dom@15.11.7)(jsdom@25.0.1)
 
+  packages/tailwind-postcss:
+    dependencies:
+      postcss:
+        specifier: ^8.4.49
+        version: 8.5.15
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+    devDependencies:
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.9(@types/node@22.20.0)(happy-dom@15.11.7)(jsdom@25.0.1)
+
   packages/theme:
     dependencies:
       zod:
