@@ -1,13 +1,12 @@
 /**
- * @shadowkit/cdn — URL scheme + tree-shaken chunking conventions.
+ * @shadowkit/cdn
  *
- * The starter Worker that ships these bundles lives at
- * `templates/cloudflare-worker`. This package is the typed contract that
- * worker uses (and that consumers can use too, for prefetch hints or
- * subresource integrity).
+ * Typed contract for the shadowkit CDN. URL scheme, package list, manifest
+ * shape. The buildable Cloudflare Worker that serves this contract lives at
+ * `templates/cloudflare-worker`.
  */
 
-export const CDN_VERSION = "0.1.0";
+export const CDN_VERSION = "1.0.0";
 
 /** Packages shadowkit publishes as fetchable CDN chunks. */
 export const CDN_PACKAGES = [
@@ -19,3 +18,14 @@ export const CDN_PACKAGES = [
 ] as const;
 
 export type CDNPackage = (typeof CDN_PACKAGES)[number];
+
+export {
+  CDN_URL_RE,
+  buildAssetURL,
+  buildPrefetchTags,
+  parseAssetURL,
+} from "./url-scheme.js";
+export type { CDNAssetURL, ParsedCDNURL } from "./url-scheme.js";
+
+export { buildManifest, groupChunks } from "./manifest.js";
+export type { BundleManifest, ChunkEntry } from "./manifest.js";
