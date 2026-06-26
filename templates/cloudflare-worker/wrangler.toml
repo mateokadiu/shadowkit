@@ -1,0 +1,17 @@
+name = "shadowkit-cdn"
+main = "src/worker.ts"
+compatibility_date = "2026-06-01"
+
+# Long-cache bundle assets via the worker's response headers; configure your
+# zone/route in the dashboard so the worker handles `/v1/*` for your domain.
+
+[vars]
+SHADOWKIT_VERSION = "1.0.0"
+
+# Production CORS allow-list. The worker echoes back any matching origin and
+# refuses the rest. Bot crawlers / unknown origins still get the bundle, just
+# without `access-control-allow-origin`.
+[[unsafe.bindings]]
+name = "ALLOWED_ORIGINS"
+type = "plain_text"
+value = "https://example.com,https://www.example.com"

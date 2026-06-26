@@ -1,0 +1,41 @@
+{
+  "name": "@shadowkit/cdn",
+  "version": "0.1.0",
+  "description": "Cloudflare-Workers-based CDN helpers for shadowkit. URL scheme, package chunking, and a buildable starter template under templates/cloudflare-worker.",
+  "license": "MIT",
+  "author": "Mateo Kadiu",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mateokadiu/shadowkit.git",
+    "directory": "packages/cdn"
+  },
+  "keywords": [
+    "cdn",
+    "cloudflare-workers",
+    "web-components",
+    "shadowkit"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo 'lint TBD'",
+    "test": "vitest run",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepare": "tsc -b"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "publishConfig": { "access": "public" }
+}
