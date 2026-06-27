@@ -1,13 +1,18 @@
 /**
- * @shadowkit/devtools — runtime hook contract.
+ * @shadowkit/devtools
  *
- * The Chrome extension lives at `templates/devtools-extension/`. This package
- * is the small library both sides agree on: the message envelope that the
- * runtime broadcasts on `window.postMessage`, and a tiny tap function the
- * extension's content script uses to mirror those into the panel.
+ * Runtime tap for the shadowkit Chrome DevTools panel. The buildable
+ * extension that listens on this tap lives at
+ * `templates/devtools-extension/`.
  */
 
-export const DEVTOOLS_VERSION = "0.1.0";
-
-/** Marker the content script greps for on every postMessage. */
+export const DEVTOOLS_VERSION = "1.0.0";
 export const DEVTOOLS_MESSAGE_TAG = "shadowkit/devtools";
+
+export { tap, isDevtoolsEvent } from "./tap.js";
+export type {
+  DevtoolsEvent,
+  DevtoolsEventKind,
+  TapHandle,
+  TapOptions,
+} from "./tap.js";
