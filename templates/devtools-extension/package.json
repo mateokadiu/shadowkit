@@ -1,0 +1,15 @@
+{
+  "name": "shadowkit-devtools-extension",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Chrome DevTools extension that surfaces shadowkit bridge messages, store snapshots, and lifecycle events in a custom panel.",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p . && cp public/* dist/ && cp manifest.json dist/",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.270",
+    "typescript": "^5.7.2"
+  }
+}

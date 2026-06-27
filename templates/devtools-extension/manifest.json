@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "shadowkit DevTools",
+  "version": "0.1.0",
+  "description": "Inspect shadowkit bridge messages, store snapshots, and lifecycle events in a dedicated DevTools panel.",
+  "devtools_page": "devtools.html",
+  "permissions": ["storage"],
+  "icons": {
+    "16": "icon-16.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  }
+}
