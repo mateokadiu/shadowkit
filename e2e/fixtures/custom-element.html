@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>shadowkit e2e — custom element</title>
+  </head>
+  <body>
+    <sk-e2e-basic id="under-test"></sk-e2e-basic>
+    <script type="module">
+      class SkE2EBasic extends HTMLElement {
+        constructor() {
+          super();
+          this.shadow = this.attachShadow({ mode: "open" });
+          this.shadow.innerHTML =
+            '<button id="b" style="color:rgb(34, 197, 94)">go</button>';
+        }
+      }
+      customElements.define("sk-e2e-basic", SkE2EBasic);
+    </script>
+  </body>
+</html>

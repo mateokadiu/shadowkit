@@ -19,8 +19,9 @@
   "scripts": {
     "dev": "turbo run dev --parallel",
     "build": "turbo run build",
-    "test": "turbo run test",
-    "typecheck": "turbo run typecheck",
+    "test": "turbo run test --filter='!@shadowkit-e2e/*'",
+    "test:e2e": "pnpm --filter @shadowkit-e2e/playwright test:e2e",
+    "typecheck": "turbo run typecheck --filter='!@shadowkit-e2e/*'",
     "lint": "turbo run lint",
     "clean": "turbo run clean && rm -rf node_modules"
   },

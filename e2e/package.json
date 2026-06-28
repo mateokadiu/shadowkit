@@ -1,0 +1,17 @@
+{
+  "name": "@shadowkit-e2e/playwright",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Playwright browser tests for shadowkit — real customElements, real Shadow DOM, real adoptedStyleSheets.",
+  "type": "module",
+  "scripts": {
+    "test:e2e": "playwright test",
+    "test:e2e:install": "playwright install --with-deps chromium",
+    "typecheck": "tsc --noEmit",
+    "test": "echo 'e2e tests run via test:e2e; opt-in only'"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "typescript": "^5.7.2"
+  }
+}
