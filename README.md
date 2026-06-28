@@ -7,33 +7,50 @@
 
 [![CI](https://github.com/mateokadiu/shadowkit/actions/workflows/ci.yml/badge.svg)](https://github.com/mateokadiu/shadowkit/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Status](https://img.shields.io/badge/status-v1.0-brightgreen)](#status)
 
 `shadowkit` is what you reach for when you have to ship a widget that lives on
 someone else's page — a checkout helper, a review widget, a price calculator,
 an inline app. It solves the three things every team hits when they try to
-embed a Web Component and four nobody ever budgets for:
+embed a Web Component and four nobody ever budgets for.
 
-1. **Tailwind v4 doesn't cross the Shadow DOM cascade boundary.** Its `@theme`
-   vars sit on `:root`, your shadow root can't see them, every utility resolves
-   to `unset`. `@shadowkit/tailwind` ships the runtime injector;
-   `@shadowkit/tailwind-postcss` rewrites compiled output to `:host`
-   automatically at build time.
-2. **postMessage is the soft underbelly of every embed.** Untyped, no
-   request/response correlation, no schema validation, no versioning.
-   `@shadowkit/bridge` ships a symmetric typed RPC + event bus over postMessage
-   with Zod-validated payloads, timeouts, structured errors, and origin
-   allow-listing.
-3. **Theme contracts drift.** Your embed exposes CSS vars, your host page
-   hard-codes the old names, you ship a redesign, sites break.
-   `@shadowkit/theme` puts the token source of truth in TypeScript, emits the
-   `:host` CSS at build time, and lets you treat drift as a type error.
+## Contents
 
-On top of those: `@shadowkit/core` gives you a `ShadowComponent` base class
-with the lifecycle wired up properly; `@shadowkit/ssr` renders declarative
-Shadow DOM markup server-side so the first byte paints; `@shadowkit/cdn`
-chunks each package into a separately fetchable URL; `@shadowkit/devtools`
-exposes a Chrome DevTools panel for bridge messages, store snapshots, and
-lifecycle events.
+- [The three problems](#the-three-problems)
+- [Status](#status)
+- [Quick start](#quick-start)
+- [Packages](#packages)
+- [SSR](#ssr-with-shadowkitssr)
+- [CDN](#cdn-with-shadowkitcdn)
+- [DevTools panel](#devtools-panel)
+- [Playwright](#playwright)
+- [Why not Lit / FAST / Stencil](#why-not-just-use-lit--fast--stencil)
+- [Browser support](#browser-support)
+
+## The three problems
+
+<details open>
+<summary><b>1. Tailwind v4 doesn't cross the Shadow DOM cascade boundary.</b> Its <code>@theme</code> vars sit on <code>:root</code>, your shadow root can't see them, every utility resolves to <code>unset</code>.</summary>
+
+`@shadowkit/tailwind` ships the runtime injector. `@shadowkit/tailwind-postcss` rewrites compiled output to `:host` automatically at build time. Together they let a Tailwind v4 project work *inside* a shadow root with `adoptedStyleSheets` and the same `@theme` vars you use on the host page — no duplicate `<style>` per instance.
+
+</details>
+
+<details>
+<summary><b>2. postMessage is the soft underbelly of every embed.</b> Untyped, no request/response correlation, no schema validation, no versioning.</summary>
+
+`@shadowkit/bridge` ships a symmetric typed RPC + event bus over postMessage with Zod-validated payloads, timeouts, structured errors, and origin allow-listing. Inputs and outputs are inferred from the schema — your handler signatures stay typed end-to-end.
+
+</details>
+
+<details>
+<summary><b>3. Theme contracts drift.</b> Your embed exposes CSS vars, your host page hard-codes the old names, you ship a redesign, sites break.</summary>
+
+`@shadowkit/theme` puts the token source of truth in TypeScript, emits the `:host` CSS at build time, and lets you treat drift as a type error. Generated types travel with the package; renaming a token across a redesign becomes a `tsc` fix-it instead of a silent breakage.
+
+</details>
+
+On top of those: `@shadowkit/core` gives you a `ShadowComponent` base class with the lifecycle wired up properly; `@shadowkit/ssr` renders declarative Shadow DOM markup server-side so the first byte paints; `@shadowkit/cdn` chunks each package into a separately fetchable URL; `@shadowkit/devtools` exposes a Chrome DevTools panel for bridge messages, store snapshots, and lifecycle events.
 
 ## Status
 
@@ -41,6 +58,21 @@ lifecycle events.
 Chrome DevTools extension scaffold, jsdom-backed unit tests, and a Playwright
 suite that exercises real `customElements`, real Shadow DOM, real
 `adoptedStyleSheets`.
+
+```mermaid
+flowchart LR
+    HOST[host page] -->|loads| CDN[shadowkit/cdn<br/>per-pkg URL]
+    CDN --> CORE[core<br/>ShadowComponent + store]
+    CDN --> TW[tailwind<br/>:host injector]
+    CDN --> TH[theme<br/>token contract]
+    CDN --> BR[bridge<br/>typed postMessage]
+    CORE --> SR[shadow root]
+    TW --> SR
+    TH --> SR
+    BR <-->|RPC + events| HOST
+    SSR[ssr] -.first-byte paint.-> HOST
+    DT[devtools] -.taps.-> BR
+```
 
 ## Quick start
 
@@ -56,7 +88,8 @@ pnpm --filter @shadowkit-e2e/playwright test:e2e:install
 pnpm test:e2e
 ```
 
-A minimal component looks like this:
+<details>
+<summary><b>A minimal component</b> — store + theme + Tailwind + typed bridge in one file</summary>
 
 ```ts
 import {
@@ -108,6 +141,8 @@ class ReviewWidget extends ShadowComponent {
 defineElement("review-widget", ReviewWidget);
 ```
 
+</details>
+
 ## Packages
 
 | Package                                                                    | What it does                                                                                                                |
@@ -141,7 +176,8 @@ const html = await renderToDeclarativeShadowDOM("sk-counter", { count: 7 });
 //   </sk-counter>
 ```
 
-Client-side:
+<details>
+<summary><b>Client-side hydration</b> — re-seed the store with the server snapshot</summary>
 
 ```ts
 import { registerHydrator, hydrateAll } from "@shadowkit/ssr";
@@ -154,6 +190,8 @@ registerHydrator<{ count: number }>("sk-counter", (host, state) => {
 
 await hydrateAll();
 ```
+
+</details>
 
 ## CDN with `@shadowkit/cdn`
 
@@ -169,7 +207,7 @@ const url = buildAssetURL({
 ```
 
 The Cloudflare Worker that serves this scheme lives at
-`templates/cloudflare-worker/`. Tree-shaken at the URL layer: a consumer that
+[`templates/cloudflare-worker/`](./templates/cloudflare-worker/). Tree-shaken at the URL layer: a consumer that
 only needs `@shadowkit/core` downloads core bytes only.
 
 ## DevTools panel
@@ -181,13 +219,13 @@ const t = tap();
 t.emit("bridge.request", { method: "order.fetch", id: "abc" }, "sk-order");
 ```
 
-Load `templates/devtools-extension/dist/` as an unpacked extension at
+Load [`templates/devtools-extension/dist/`](./templates/devtools-extension/) as an unpacked extension at
 `chrome://extensions`. A `shadowkit` tab shows up next to Console and shows
 every event the runtime emits.
 
 ## Playwright
 
-Real-browser tests live under `e2e/`. They cover:
+Real-browser tests live under [`e2e/`](./e2e/). They cover:
 
 - `customElements.define` + shadow root attachment
 - `adoptedStyleSheets` reference sharing across instances
@@ -224,4 +262,4 @@ falls back to a tagged `<style>` element per root.
 
 ## License
 
-MIT. See [LICENSE](./LICENSE).
+MIT · [@mateokadiu](https://github.com/mateokadiu)
