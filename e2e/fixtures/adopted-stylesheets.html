@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>shadowkit e2e — adoptedStyleSheets</title>
+  </head>
+  <body>
+    <!-- Two instances of the same component — both must adopt the SAME sheet
+         object, not two copies. That's the load-bearing behavior of the
+         Shadow DOM + Tailwind story. -->
+    <sk-e2e-styled id="a"></sk-e2e-styled>
+    <sk-e2e-styled id="b"></sk-e2e-styled>
+    <script type="module">
+      const sheet = new CSSStyleSheet();
+      sheet.replaceSync(
+        ":host { display: block; } .pill { background: rgb(59, 130, 246); color: white; padding: 4px 8px; border-radius: 999px; }"
+      );
+
+      class SkE2EStyled extends HTMLElement {
+        constructor() {
+          super();
+          this.shadow = this.attachShadow({ mode: "open" });
+          this.shadow.adoptedStyleSheets = [
+            ...this.shadow.adoptedStyleSheets,
+            sheet,
+          ];
+          this.shadow.innerHTML = '<span class="pill">hi</span>';
+        }
+      }
+      customElements.define("sk-e2e-styled", SkE2EStyled);
+
+      window.__sharedSheet = sheet;
+      window.__getAdopted = function (id) {
+        const el = document.getElementById(id);
+        return el.shadowRoot.adoptedStyleSheets;
+      };
+    </script>
+  </body>
+</html>

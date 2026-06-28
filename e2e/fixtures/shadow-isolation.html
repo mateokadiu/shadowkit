@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>shadowkit e2e — shadow isolation</title>
+    <style>
+      /* Host-page styles deliberately set foreground red. The shadow tree
+         must NOT inherit `color: red` because of the cascade boundary —
+         only inheritable computed values flow in, and the .pill rule wins
+         inside the shadow. */
+      body {
+        color: rgb(255, 0, 0);
+      }
+    </style>
+  </head>
+  <body>
+    <sk-e2e-isolated></sk-e2e-isolated>
+    <p id="outside" class="pill">outside</p>
+    <script type="module">
+      class SkE2EIsolated extends HTMLElement {
+        constructor() {
+          super();
+          this.shadow = this.attachShadow({ mode: "open" });
+          this.shadow.innerHTML =
+            '<style>.pill { color: rgb(34, 197, 94); }</style>' +
+            '<span class="pill">inside</span>';
+        }
+      }
+      customElements.define("sk-e2e-isolated", SkE2EIsolated);
+    </script>
+  </body>
+</html>
