@@ -1,6 +1,6 @@
 {
   "name": "@shadowkit/theme",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Design-token DSL for shadowkit. TS source of truth emits :host CSS variables and matching TS types. Drift becomes a type error.",
   "license": "MIT",
   "author": "Mateo Kadiu",

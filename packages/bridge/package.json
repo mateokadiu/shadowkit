@@ -1,6 +1,6 @@
 {
   "name": "@shadowkit/bridge",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Typed postMessage bridge for shadowkit: Zod-validated request/response RPC + named event channels, with timeouts, correlation IDs, and origin allow-listing.",
   "license": "MIT",
   "author": "Mateo Kadiu",

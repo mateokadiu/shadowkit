@@ -1,6 +1,6 @@
 {
   "name": "@shadowkit/devtools",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Runtime hooks for the shadowkit Chrome DevTools panel. Tap bridge messages, store snapshots, and lifecycle events.",
   "license": "MIT",
   "author": "Mateo Kadiu",

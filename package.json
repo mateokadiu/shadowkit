@@ -1,7 +1,7 @@
 {
   "name": "shadowkit",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Production toolkit for shipping framework-agnostic embeddable Web Components. Tailwind v4 inside Shadow DOM, typed postMessage bridge, design-token contract, lifecycle-aware reactive store.",
   "license": "MIT",
   "author": "Mateo Kadiu",

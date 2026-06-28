@@ -1,6 +1,6 @@
 {
   "name": "@shadowkit/core",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Lifecycle-safe base class for embeddable Web Components. Shadow DOM, scoped stylesheets via adoptedStyleSheets, safe element registration.",
   "license": "MIT",
   "author": "Mateo Kadiu",

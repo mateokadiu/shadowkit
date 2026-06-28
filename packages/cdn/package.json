@@ -1,6 +1,6 @@
 {
   "name": "@shadowkit/cdn",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Cloudflare-Workers-based CDN helpers for shadowkit. URL scheme, package chunking, and a buildable starter template under templates/cloudflare-worker.",
   "license": "MIT",
   "author": "Mateo Kadiu",

@@ -1,6 +1,6 @@
 {
   "name": "@shadowkit/tailwind-postcss",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "PostCSS plugin that rewrites Tailwind v4 :root / @theme output to :host so it cascades into Shadow DOM, and emits an injectTailwind-ready CSS module.",
   "license": "MIT",
   "author": "Mateo Kadiu",

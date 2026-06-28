@@ -1,6 +1,6 @@
 {
   "name": "@shadowkit/tailwind",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Tailwind v4 inside Shadow DOM, actually working. Runtime injector that attaches compiled Tailwind output to shadow roots via adoptedStyleSheets — solves the :root cascade-boundary problem.",
   "license": "MIT",
   "author": "Mateo Kadiu",

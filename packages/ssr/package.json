@@ -1,6 +1,6 @@
 {
   "name": "@shadowkit/ssr",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Declarative Shadow DOM SSR helper for shadowkit. Renders <template shadowrootmode> markup server-side, hydrates client-side with the original store snapshot.",
   "license": "MIT",
   "author": "Mateo Kadiu",
